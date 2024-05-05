@@ -437,6 +437,23 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+      -- Falling back to find_files if git_files can't find a .git directory
+      -- https://github.com/nvim-telescope/telescope.nvim/wiki/Configuration-Recipes#falling-back-to-find_files-if-git_files-cant-find-a-git-directory
+      local is_inside_work_tree = {}
+      vim.keymap.set('n', '<leader>sp', function()
+        local opts = {}
+        local cwd = vim.fn.getcwd()
+        if is_inside_work_tree[cwd] == nil then
+          vim.fn.system 'git rev-parse --is-inside-work-tree'
+          is_inside_work_tree[cwd] = vim.v.shell_error == 0
+        end
+
+        if is_inside_work_tree[cwd] then
+          builtin.git_files(opts)
+        else
+          builtin.find_files(opts)
+        end
+      end, { desc = '[S]earch [P]roject files' })
     end,
   },
 
