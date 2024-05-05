@@ -851,8 +851,12 @@ require('lazy').setup({
 
   {
     'stevearc/oil.nvim',
-    opts = {},
-    -- Optional dependencies
+    opts = {
+      default_file_expolorer = true,
+      view_options = {
+        show_hidden = true,
+      },
+    },
     dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
 
