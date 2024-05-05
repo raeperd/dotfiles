@@ -120,27 +120,6 @@ export PATH=/opt/homebrew/bin:$PATH
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
 
-# xdg config
-export XDG_CONFIG_HOME="$HOME/.config"
-export PATH="$PATH:$(go env GOPATH)/bin"
-
-alias n="nvim ."
-alias v="nvim ."
-
-source <(kubectl completion zsh)
-
-# lego build
-export CGO_LDFLAGS="-L/opt/homebrew/opt/berkeley-db@5/lib"
-
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
-
-# pnpm
-export PNPM_HOME="/Users/raeperd.117/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
