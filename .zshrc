@@ -116,7 +116,7 @@ source $ZSH/oh-my-zsh.sh
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
-export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/bin:~/go/bin:$PATH
 
 # Generated for envman. Do not edit.
 [ -s "$HOME/.config/envman/load.sh" ] && source "$HOME/.config/envman/load.sh"
