@@ -57,6 +57,11 @@
       ]
     }
   ],
+  "transient_prompt": {
+    "background": "transparent",
+    "foreground": "p:os",
+    "template": "{{ .Folder }}> "
+  },
   "palette": {
     "blue": "#89B4FA",
     "closer": "p:os",
