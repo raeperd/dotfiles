@@ -1,10 +1,10 @@
 {
-  "title": "O-Launcher Rule v1.0.8",
+  "title": "O-Launcher Rule v1.0.12",
   "maintainers": ["raeperd"],
   "homepage": ["https://raeperd.github.io"],
   "rules": [
     {
-      "description": "O-Launcher Rule v1.0.9",
+      "description": "O-Launcher v1.0.12",
       "manipulators": [
         {
           "type": "basic",
@@ -342,7 +342,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'IntelliJ IDEA.app'"
+              "shell_command": "open -a 'Intellij IDEA Ultimate.app'"
             }
           ],
           "conditions": [
@@ -389,7 +389,7 @@
               }
             },
             {
-              "shell_command": "open -a 'IntelliJ IDEA.app'"
+              "shell_command": "open -a 'Intellij IDEA Ultimate.app'"
             }
           ],
           "parameters": {
