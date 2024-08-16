@@ -933,6 +933,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
     end,
   },
+
   'github/copilot.vim',
   {
     'Exafunction/codeium.nvim',
@@ -942,6 +943,40 @@ require('lazy').setup({
     },
     config = function()
       require('codeium').setup {}
+    end,
+  },
+
+  {
+    'NeogitOrg/neogit',
+    dependencies = {
+      'nvim-lua/plenary.nvim', -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
+      'nvim-telescope/telescope.nvim',
+      -- Only one of these is needed, not both.
+      -- optional
+      'ibhagwan/fzf-lua', -- optional
+    },
+    config = function()
+      local neogit = require 'neogit'
+      neogit.setup {
+        integrations = {
+          diffview = true,
+          fzf = true,
+          telescope = true,
+        },
+      }
+      vim.keymap.set('n', '<leader>gs', neogit.open, { desc = 'Neogit: Status' })
+      vim.keymap.set('n', '<leader>gc', function()
+        neogit.open { 'commit' }
+      end, { desc = 'Neogit: Commit' })
+      vim.keymap.set('n', '<leader>gp', function()
+        neogit.open { 'pull' }
+      end, { desc = 'Neogit: Pull' })
+      vim.keymap.set('n', '<leader>gP', function()
+        neogit.open { 'push' }
+      end, { desc = 'Neogit: Push' })
+      local builtin = require 'telescope.builtin'
+      vim.keymap.set('n', '<leader>gb', builtin.git_branches, { desc = 'Search [g]it [b]ranches' })
     end,
   },
 
