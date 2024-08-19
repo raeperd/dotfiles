@@ -980,6 +980,21 @@ require('lazy').setup({
     end,
   },
 
+  {
+    'jackMort/ChatGPT.nvim',
+    event = 'VeryLazy',
+    config = function()
+      require('chatgpt').setup {
+        api_key_cmd = 'pass openai/nvim',
+      }
+    end,
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'folke/trouble.nvim',
+      'nvim-telescope/telescope.nvim',
+    },
+  },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- put them in the right spots if you want.
