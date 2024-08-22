@@ -367,7 +367,6 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {} },
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
     },
     config = function()
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -618,6 +617,13 @@ require('lazy').setup({
         },
       }
     end,
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = 'lazydev',
+        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+      })
+    end,
   },
 
   {
@@ -637,11 +643,7 @@ require('lazy').setup({
       local dap = require 'dap'
       local dapui = require 'dapui'
       require('mason-nvim-dap').setup {
-        -- Makes a best effort to setup the various debuggers with
-        -- reasonable debug configurations
-        automatic_setup = true,
-        -- You can provide additional configuration to the handlers,
-        -- see mason-nvim-dap README for more information
+        automatic_installation = true,
         handlers = {},
         -- You'll need to check that you have the required things installed
         -- online, please don't ask me how to install them :)
@@ -650,15 +652,20 @@ require('lazy').setup({
           'delve',
         },
       }
+      -- Install golang specific config
+      local dapgo = require 'dap-go'
+      dapgo.setup()
       -- Basic debugging keymaps, feel free to change to your liking!
-      vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
-      vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
+      vim.keymap.set('n', '<F1>', dap.continue, { desc = 'Debug: Start/Continue' })
       vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
       vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-      vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-      vim.keymap.set('n', '<leader>B', function()
+      vim.keymap.set('n', '<F4>', dap.step_into, { desc = 'Debug: Step Into' })
+      vim.keymap.set('n', '<leader>db', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
+      vim.keymap.set('n', '<leader>dB', function()
         dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end, { desc = 'Debug: Set Breakpoint' })
+      vim.keymap.set('n', '<leader>dt', dapgo.debug_test, { desc = 'Debug: debug go test' })
+      vim.keymap.set('n', '<leader>dlt', dapgo.debug_last_test, { desc = 'Debug: debug last go test' })
       -- Dap UI setup
       -- For more information, see |:help nvim-dap-ui|
       dapui.setup {
@@ -685,8 +692,6 @@ require('lazy').setup({
       dap.listeners.after.event_initialized['dapui_config'] = dapui.open
       dap.listeners.before.event_terminated['dapui_config'] = dapui.close
       dap.listeners.before.event_exited['dapui_config'] = dapui.close
-      -- Install golang specific config
-      require('dap-go').setup()
     end,
   },
 
@@ -995,6 +1000,197 @@ require('lazy').setup({
       'nvim-telescope/telescope.nvim',
     },
   },
+
+  {
+    'folke/lazydev.nvim',
+    ft = 'lua', -- only load on lua files
+    opts = {
+      library = {
+        '~/projects/my-awesome-lib',
+        -- Or relative, which means they will be resolved from the plugin dir.
+        'lazy.nvim',
+        'luvit-meta/library',
+        -- It can also be a table with trigger words / mods
+        -- Only load luvit types when the `vim.uv` word is found
+        { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+        -- always load the LazyVim library
+        'LazyVim',
+        -- Only load the lazyvim library when the `LazyVim` global is found
+        { path = 'LazyVim', words = { 'LazyVim' } },
+        -- Load the wezterm types when the `wezterm` module is required
+        -- Needs `justinsgithub/wezterm-types` to be installed
+        { path = 'wezterm-types', mods = { 'wezterm' } },
+        -- Load the xmake types when opening file named `xmake.lua`
+        -- Needs `LelouchHe/xmake-luals-addon` to be installed
+        { path = 'xmake-luals-addon/library', files = { 'xmake.lua' } },
+        { path = 'nvim-dap-ui', types = true },
+      },
+      -- always enable unless `vim.g.lazydev_enabled = false`
+      -- This is the default
+      enabled = function(root_dir)
+        return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
+      end,
+      -- disable when a .luarc.json file is found
+      enabled = function(root_dir)
+        return not vim.uv.fs_stat(root_dir .. '/.luarc.json')
+      end,
+    },
+  },
+
+  { 'Bilal2453/luvit-meta', lazy = true }, -- optional `vim.uv` typings
+
+  -- Neotest setup
+  {
+    'nvim-neotest/neotest',
+    event = 'VeryLazy',
+    dependencies = {
+      'nvim-neotest/nvim-nio',
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'nvim-neotest/neotest-plenary',
+      'nvim-neotest/neotest-vim-test',
+      {
+        'fredrikaverpil/neotest-golang',
+        dependencies = {
+          {
+            'leoluz/nvim-dap-go',
+            opts = {},
+          },
+        },
+        branch = 'main',
+      },
+    },
+    opts = function(_, opts)
+      opts.adapters = opts.adapters or {}
+      opts.adapters['neotest-golang'] = {
+        go_test_args = {
+          '-v',
+          '-race',
+        },
+      }
+    end,
+    config = function(_, opts)
+      if opts.adapters then
+        local adapters = {}
+        for name, config in pairs(opts.adapters or {}) do
+          if type(name) == 'number' then
+            if type(config) == 'string' then
+              config = require(config)
+            end
+            adapters[#adapters + 1] = config
+          elseif config ~= false then
+            local adapter = require(name)
+            if type(config) == 'table' and not vim.tbl_isempty(config) then
+              local meta = getmetatable(adapter)
+              if adapter.setup then
+                adapter.setup(config)
+              elseif adapter.adapter then
+                adapter.adapter(config)
+                adapter = adapter.adapter
+              elseif meta and meta.__call then
+                adapter(config)
+              else
+                error('Adapter ' .. name .. ' does not support setup')
+              end
+            end
+            adapters[#adapters + 1] = adapter
+          end
+        end
+        opts.adapters = adapters
+      end
+      require('neotest').setup(opts)
+      local neotest_ns = vim.api.nvim_create_namespace 'neotest'
+      vim.diagnostic.config({
+        virtual_text = {
+          format = function(diagnostic)
+            local message = diagnostic.message:gsub('\n', ' '):gsub('\t', ' '):gsub('%s+', ' '):gsub('^%s+', '')
+            return message
+          end,
+        },
+      }, neotest_ns)
+    end,
+    keys = {
+      {
+        '<leader>ta',
+        function()
+          require('neotest').run.attach()
+        end,
+        desc = '[t]est [a]ttach',
+      },
+      {
+        '<leader>tf',
+        function()
+          require('neotest').run.run(vim.fn.expand '%')
+        end,
+        desc = '[t]est run [f]ile',
+      },
+      {
+        '<leader>tA',
+        function()
+          require('neotest').run.run(vim.uv.cwd())
+        end,
+        desc = '[t]est [A]ll files',
+      },
+      {
+        '<leader>tS',
+        function()
+          require('neotest').run.run { suite = true }
+        end,
+        desc = '[t]est [S]uite',
+      },
+      {
+        '<leader>tn',
+        function()
+          require('neotest').run.run()
+        end,
+        desc = '[t]est [n]earest',
+      },
+      {
+        '<leader>tl',
+        function()
+          require('neotest').run.run_last()
+        end,
+        desc = '[t]est [l]ast',
+      },
+      {
+        '<leader>ts',
+        function()
+          require('neotest').summary.toggle()
+        end,
+        desc = '[t]est [s]ummary',
+      },
+      {
+        '<leader>to',
+        function()
+          require('neotest').output.open { enter = true, auto_close = true }
+        end,
+        desc = '[t]est [o]utput',
+      },
+      {
+        '<leader>tO',
+        function()
+          require('neotest').output_panel.toggle()
+        end,
+        desc = '[t]est [O]utput panel',
+      },
+      {
+        '<leader>tt',
+        function()
+          require('neotest').run.stop()
+        end,
+        desc = '[t]est [t]erminate',
+      },
+      {
+        '<leader>td',
+        function()
+          require('neotest').run.run { suite = false, strategy = 'dap' }
+        end,
+        desc = 'Debug nearest test',
+      },
+    },
+  },
+
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- put them in the right spots if you want.
