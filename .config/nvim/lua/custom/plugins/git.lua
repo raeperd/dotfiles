@@ -67,6 +67,7 @@ return {
     dependencies = {
       'nvim-lua/plenary.nvim', -- required
       'sindrets/diffview.nvim', -- optional - Diff integration
+      'nvim-tree/nvim-web-devicons',
       'nvim-telescope/telescope.nvim',
       -- Only one of these is needed, not both.
       -- optional
