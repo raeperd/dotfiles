@@ -149,4 +149,18 @@ return {
       },
     },
   },
+  {
+    'andythigpen/nvim-coverage',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    rocks = { 'lua-xmlreader' }, -- Optional: needed for PHP when using the cobertura parser
+    config = function()
+      require('coverage').setup {
+        lang = {
+          go = {
+            coverage_file = 'coverage.txt',
+          },
+        },
+      }
+    end,
+  },
 }
