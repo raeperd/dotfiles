@@ -6,7 +6,7 @@
                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
                 "rules": [
                     {
-                        "description": "o-launcher v1.1.0",
+                        "description": "o-launcher v1.2.0",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -553,7 +553,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a TickTick.app" }],
+                                "to": [{ "shell_command": "open -a Todoist.app" }],
                                 "type": "basic"
                             },
                             {
@@ -587,7 +587,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a TickTick.app" }
+                                    { "shell_command": "open -a Todoist.app" }
                                 ],
                                 "type": "basic"
                             },
