@@ -11,12 +11,13 @@ config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.8
+config.window_background_opacity = 0.85
 config.macos_window_background_blur = 10
 
 config.window_padding = {
-	top = 20,
+	top = 35,
 	bottom = 20,
+	left = 40,
 }
 
 return config
