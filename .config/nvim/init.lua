@@ -354,6 +354,19 @@ require('lazy').setup {
     -- this is equalent to setup({}) function
   },
 
+  {
+    'voldikss/vim-floaterm',
+    config = function()
+      vim.keymap.set(
+        'n',
+        '<leader>fn',
+        '<cmd>:FloatermNew --height=0.7 --width=0.8 --wintype=float --name=floaterm1 --position=center --autoclose=1<CR>',
+        { desc = 'Open FloatTerm' }
+      )
+      vim.keymap.set({ 'n', 't' }, '<C-f>', '<cmd>:FloatermToggle<CR>', { desc = 'Toggle FloatTerm' })
+    end,
+  },
+
   { import = 'custom.plugins' },
 }
 
