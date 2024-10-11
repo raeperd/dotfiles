@@ -83,6 +83,7 @@ return {
         -- clangd = {},
         gopls = {},
         golangci_lint_ls = {},
+        astro = {},
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -107,6 +108,9 @@ return {
             },
           },
         },
+        yamlls = {},
+        eslint = {},
+        tailwindcss = {},
       }
       -- Ensure the servers and tools above are installed
       --  To check the current status of installed tools and/or manually install
