@@ -359,11 +359,11 @@ require('lazy').setup {
     config = function()
       vim.keymap.set(
         'n',
-        '<leader>fn',
-        '<cmd>:FloatermNew --height=0.7 --width=0.8 --wintype=float --name=floaterm1 --position=center --autoclose=1<CR>',
+        '<C-f>',
+        '<cmd>:FloatermNew --height=0.9 --width=0.9 --wintype=float --name=floaterm1 --position=center --autoclose=0<CR>',
         { desc = 'Open FloatTerm' }
       )
-      vim.keymap.set({ 'n', 't' }, '<C-f>', '<cmd>:FloatermToggle<CR>', { desc = 'Toggle FloatTerm' })
+      vim.keymap.set('t', '<C-f>', '<cmd>:FloatermToggle<CR>', { desc = 'Toggle FloatTerm' })
     end,
   },
 
