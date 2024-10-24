@@ -71,13 +71,6 @@ return {
     end,
     keys = {
       {
-        '<leader>ta',
-        function()
-          require('neotest').run.attach()
-        end,
-        desc = '[t]est [a]ttach',
-      },
-      {
         '<leader>tf',
         function()
           require('neotest').run.run(vim.fn.expand '%')
@@ -85,7 +78,7 @@ return {
         desc = '[t]est run [f]ile',
       },
       {
-        '<leader>tA',
+        '<leader>ta',
         function()
           require('neotest').run.run(vim.uv.cwd())
         end,
