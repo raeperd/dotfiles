@@ -357,19 +357,6 @@ require('lazy').setup {
     -- this is equalent to setup({}) function
   },
 
-  {
-    'voldikss/vim-floaterm',
-    config = function()
-      vim.keymap.set(
-        'n',
-        '<C-f>',
-        '<cmd>:FloatermNew --height=0.9 --width=0.9 --wintype=float --name=floaterm1 --position=center --autoclose=0<CR>',
-        { desc = 'Open FloatTerm' }
-      )
-      vim.keymap.set('t', '<C-f>', '<cmd>:FloatermToggle<CR>', { desc = 'Toggle FloatTerm' })
-    end,
-  },
-
   { 'Bekaboo/deadcolumn.nvim', opts = {
     blending = {
       colorcode = '#1F2430',
