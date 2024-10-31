@@ -149,3 +149,19 @@ alias v="nvim"
 alias lg="lazygit"
 
 source ~/.env.sh 
+
+fn() {
+  local search_dir="${1:-.}"  # Use first argument if provided, otherwise use current dir (.)
+  
+  if [ ! -d "$search_dir" ]; then
+    echo "Error: '$search_dir' is not a valid directory"
+    return 1
+  fi
+
+  cd "$search_dir"
+  local files=$(fzf --preview 'bat --style=numbers --color=always {}' --height 40% --layout=reverse)
+  if [ -n "$files" ]; then
+    nvim "$files"
+  fi
+  cd - > /dev/null  # Return to original directory silently
+}
