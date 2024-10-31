@@ -142,3 +142,10 @@ eval "$(zoxide init zsh)"
 alias cd="z"
 
 alias k="kubectl"
+
+alias n="nvim"
+alias v="nvim"
+
+alias lg="lazygit"
+
+source ~/.env.sh 
