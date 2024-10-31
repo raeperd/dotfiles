@@ -62,36 +62,36 @@ return {
 
   {
     'stevearc/oil.nvim',
-    opts = {},
     dependencies = { { 'echasnovski/mini.icons', opts = {} } },
-    config = function()
-      require('oil').setup {
-        default_file_explorer = true,
-        delete_to_trash = true,
-        skip_confirm_for_simple_edits = true,
-        view_options = {
-          show_hidden = true,
-          natural_order = true,
-          is_always_hidden = function(name, _)
-            return name == '..' or name == '.git'
-          end,
-        },
-        float = {
-          padding = 2,
-          max_width = 90,
-          max_height = 0,
-        },
-        win_options = {
-          wrap = true,
-          winblend = 0,
-        },
-        keymaps = {
-          ['<C-v>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
-          ['<C-x>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
-          ['<C-p>'] = { 'actions.preview', desc = 'Open the entry in preview' },
-        },
-      }
-    end,
+    opts = {
+      default_file_explorer = true,
+      delete_to_trash = true,
+      skip_confirm_for_simple_edits = true,
+      view_options = {
+        show_hidden = true,
+        natural_order = true,
+        is_always_hidden = function(name, _)
+          return name == '..' or name == '.git'
+        end,
+      },
+      float = {
+        padding = 2,
+        max_width = 90,
+        max_height = 0,
+      },
+      win_options = {
+        wrap = true,
+        winblend = 0,
+      },
+      use_default_keymaps = false,
+      keymaps = {
+        ['g?'] = 'actions.show_help',
+        ['<CR>'] = 'actions.select',
+        ['<C-v>'] = { 'actions.select', opts = { vertical = true }, desc = 'Open the entry in a vertical split' },
+        ['<C-x>'] = { 'actions.select', opts = { horizontal = true }, desc = 'Open the entry in a horizontal split' },
+        ['<C-p>'] = { 'actions.preview', desc = 'Open the entry in preview' },
+      },
+    },
     init = function()
       vim.keymap.set('n', '-', '<CMD>Oil<CR>', { desc = 'Open parent directory' })
       vim.keymap.set('n', '=', '<CMD>Oil --float<CR>', { desc = 'Open parent directory in float' })
