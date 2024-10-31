@@ -51,6 +51,9 @@ vim.opt.inccommand = 'split'
 -- Show which line your cursor is on
 vim.opt.cursorline = true
 
+-- Set the column guide at column 80
+vim.opt.colorcolumn = '100,120'
+
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
@@ -366,6 +369,13 @@ require('lazy').setup {
       vim.keymap.set('t', '<C-f>', '<cmd>:FloatermToggle<CR>', { desc = 'Toggle FloatTerm' })
     end,
   },
+
+  { 'Bekaboo/deadcolumn.nvim', opts = {
+    blending = {
+      colorcode = '#1F2430',
+      hlgroup = { 'NonText', 'bg' },
+    },
+  } },
 
   { import = 'custom.plugins' },
 }
