@@ -148,6 +148,7 @@ return {
     rocks = { 'lua-xmlreader' }, -- Optional: needed for PHP when using the cobertura parser
     config = function()
       require('coverage').setup {
+        auto_reload = true,
         lang = {
           go = {
             coverage_file = 'coverage.txt',
