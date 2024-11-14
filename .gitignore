@@ -1,3 +1,4 @@
 .config/tmux/plugins
 .config/karabiner/automatic_backups
+.env.sh
 
