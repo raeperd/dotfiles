@@ -1,5 +1,5 @@
 {
-  "title": "o-launcher v1.5.1",
+  "title": "o-launcher v1.6.0",
   "maintainers": [
     "raeperd"
   ],
@@ -8,7 +8,7 @@
   ],
   "rules": [
     {
-      "description": "o-launcher v1.5.1",
+      "description": "o-launcher v1.6.0",
       "manipulators": [
         {
           "type": "basic",
@@ -171,7 +171,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a Goland.app"
+              "shell_command": "open -a Ghostty.app"
             }
           ],
           "conditions": [
@@ -222,7 +222,7 @@
               }
             },
             {
-              "shell_command": "open -a Goland.app"
+              "shell_command": "open -a Ghostty.app"
             }
           ],
           "parameters": {
@@ -244,7 +244,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a Wezterm.app"
+              "shell_command": "open -a Ghostty.app"
             }
           ],
           "conditions": [
@@ -295,7 +295,7 @@
               }
             },
             {
-              "shell_command": "open -a Wezterm.app"
+              "shell_command": "open -a Ghostty.app"
             }
           ],
           "parameters": {
