@@ -6,7 +6,7 @@
                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
                 "rules": [
                     {
-                        "description": "o-launcher v1.5.1",
+                        "description": "o-launcher v1.6.0",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -129,7 +129,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a Goland.app" }],
+                                "to": [{ "shell_command": "open -a Ghostty.app" }],
                                 "type": "basic"
                             },
                             {
@@ -163,7 +163,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a Goland.app" }
+                                    { "shell_command": "open -a Ghostty.app" }
                                 ],
                                 "type": "basic"
                             },
@@ -182,7 +182,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a Wezterm.app" }],
+                                "to": [{ "shell_command": "open -a Ghostty.app" }],
                                 "type": "basic"
                             },
                             {
@@ -216,7 +216,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a Wezterm.app" }
+                                    { "shell_command": "open -a Ghostty.app" }
                                 ],
                                 "type": "basic"
                             },
