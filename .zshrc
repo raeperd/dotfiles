@@ -77,7 +77,13 @@ plugins=(
 	tmux
 )
 
-ZSH_TMUX_AUTOSTART=true
+# Only autostart tmux in Ghostty terminal
+# ref: https://ghostty.org/docs/help/terminfo
+if [ "$TERM" = "xterm-ghostty" ]; then
+    ZSH_TMUX_AUTOSTART=true
+else
+    ZSH_TMUX_AUTOSTART=false
+fi
 
 source $ZSH/oh-my-zsh.sh
 
