@@ -157,3 +157,9 @@ alt-shift-l = ['join-with right', 'mode main']
 if.app-id = 'app.zen-browser.zen'
 if.window-title-regex-substring = 'Picture-in-Picture'
 run = 'layout floating'
+
+# See: https://nikitabobko.github.io/AeroSpace/guide#multiple-monitors
+[workspace-to-monitor-force-assignment]
+1 = 'main'
+2 = ['secondary', 'built-in']
+3 = ['DELL U2720Q (2)', '^ipad*']
