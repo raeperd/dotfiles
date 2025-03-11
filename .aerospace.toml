@@ -162,4 +162,4 @@ run = 'layout floating'
 [workspace-to-monitor-force-assignment]
 1 = 'main'
 2 = ['secondary', 'built-in']
-3 = ['DELL U2720Q (2)', '^ipad*']
+3 = ['DELL U2720Q (1)', '^ipad*']

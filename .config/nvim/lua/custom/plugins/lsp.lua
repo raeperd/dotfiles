@@ -57,10 +57,12 @@ return {
               buffer = event.buf,
               callback = vim.lsp.buf.document_highlight,
             })
-            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            })
+            if not vim.g.vscode then
+              vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+                buffer = event.buf,
+                callback = vim.lsp.buf.clear_references,
+              })
+            end
           end
         end,
       })
@@ -83,7 +85,15 @@ return {
         -- clangd = {},
         gopls = {},
         golangci_lint_ls = {},
-        astro = {},
+        astro = {
+          settings = {
+            init_options = {
+              typescript = {
+                serverPath = '/Users/raeperd.117/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib/tsserverlibrary.js',
+              },
+            },
+          },
+        },
         -- pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
