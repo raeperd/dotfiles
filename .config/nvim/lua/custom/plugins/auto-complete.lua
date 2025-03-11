@@ -107,7 +107,11 @@ return {
       'hrsh7th/nvim-cmp',
     },
     config = function()
-      require('codeium').setup {}
+      require('codeium').setup {
+        virtual_text = {
+          enabled = true,
+        },
+      }
     end,
   },
 
@@ -135,6 +139,12 @@ return {
     opts = {
       file_selector = {
         provider = 'telescope',
+      },
+      mappings = {
+        sidebar = {
+          switch_windows = '<leader>sw',
+          reverse_switch_windows = '<leader>srw',
+        },
       },
       -- add any opts here
     },

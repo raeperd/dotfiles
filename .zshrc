@@ -172,3 +172,11 @@ fn() {
   fi
   cd - > /dev/null  # Return to original directory silently
 }
+
+# pnpm
+export PNPM_HOME="/Users/raeperd.117/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
