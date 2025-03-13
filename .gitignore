@@ -1,4 +1,5 @@
 .config/tmux/plugins
 .config/karabiner/automatic_backups
+.config/raycast
 .env.sh
 
