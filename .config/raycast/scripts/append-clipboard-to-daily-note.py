@@ -21,10 +21,19 @@ import subprocess
 def main():
     # Get clipboard content
     try:
-        result = subprocess.run(["pbpaste"], capture_output=True, text=True)
-        message = result.stdout.strip()
+        # Use check_output with UTF-8 environment variable
+        message = subprocess.check_output(
+            'pbpaste', 
+            env={'LANG': 'en_US.UTF-8'}
+        ).decode('utf-8')
+        # Convert newlines to spaces and strip extra whitespace
+        message = ' '.join(message.splitlines()).strip()
+        print(message)
     except subprocess.CalledProcessError:
         print("failed: cannot read clipboard")
+        sys.exit(1)
+    except UnicodeDecodeError:
+        print("failed: cannot decode clipboard content")
         sys.exit(1)
     
     # Get current time in HH:mm format
