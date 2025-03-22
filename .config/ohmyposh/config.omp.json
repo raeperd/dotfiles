@@ -74,6 +74,14 @@
           "foreground": "p:closer",
           "type": "text",
           "style": "plain"
+        },
+        {
+          "type": "python",
+          "style": "powerline",
+          "powerline_symbol": "",
+          "foreground": "#100e23",
+          "background": "#906cff",
+          "template": "  {{ .Full }} "
         }
       ]
     }
