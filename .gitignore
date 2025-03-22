@@ -2,5 +2,6 @@
 .config/karabiner/automatic_backups
 .config/raycast/*
 !.config/raycast/scripts
+.config/linearmouse
 .env.sh
 .config/op
