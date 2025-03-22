@@ -156,6 +156,8 @@ alias v="nvim"
 
 alias lg="lazygit"
 
+alias python="/opt/homebrew/bin/python3"
+
 source ~/.env.sh 
 
 fn() {
