@@ -1,0 +1,39 @@
+{
+	"schemaVersion": "0.1.0",
+	"name": "YouTube",
+	"behavior": "create",
+	"noteContentFormat": "![thumbnail]({{schema:thumbnailUrl|slice:0}})\n\n![{{schema:name}}]({{url}})\n\n# Summary\n{{\"Summarize this transcript with same language in concise bullet point max 5 sentence\"}}\n\n# Transcript\n{{\"convert transcript into format of - [mm:ss]() message. if message is incomplete sentence, try to merge message with next message in the same line. if message is important in entire transcript, highlight message with ==message== format\"}}",
+	"properties": [
+		{
+			"name": "published",
+			"value": "{{schema:uploadDate|date:YYYY-MM-DDTHH:mm:ss}}",
+			"type": "date"
+		},
+		{
+			"name": "media_link",
+			"value": "{{url}}",
+			"type": "text"
+		},
+		{
+			"name": "date",
+			"value": "{{date:YYYY-MM-DDTHH:mm:ss}}",
+			"type": "datetime"
+		},
+		{
+			"name": "tags",
+			"value": "reference/clipping/youtube",
+			"type": "multitext"
+		},
+		{
+			"name": "modified",
+			"value": "{{date:YYYY-MM-DDTHH:mm:ss}}",
+			"type": "datetime"
+		}
+	],
+	"triggers": [
+		"https://www.youtube.com/watch?v="
+	],
+	"noteNameFormat": "{{schema:name}}",
+	"path": "Clippings",
+	"context": "# trsncript\n{{selectorHtml:.ytd-transcript-segment-list-renderer|first|replace:\\\\\\\"&nbsp;\\\\\\\":\\\\\\\" \\\\\\\"|join|markdown}}\"\n\n# description\n{{description}}"
+}
