@@ -125,51 +125,49 @@ vim.opt.rtp:prepend(lazypath)
 if vim.g.vscode then
   local vscode = require('vscode')
 
-  -- Navigation between changes and diagnostics
-  vim.keymap.set({ 'n', 'v' }, ']g', function() vscode.action('workbench.action.editor.nextChange') end,
-    { desc = 'Go to next git change' })
-  vim.keymap.set({ 'n', 'v' }, '[g', function() vscode.action('workbench.action.editor.previousChange') end,
-    { desc = 'Go to previous git change' })
-  vim.keymap.set({ 'n', 'v' }, ']d', function() vscode.action('editor.action.marker.next') end,
-    { desc = 'Go to next diagnostic' })
-  vim.keymap.set({ 'n', 'v' }, '[d', function() vscode.action('editor.action.marker.prev') end,
-    { desc = 'Go to previous diagnostic' })
+  local navigation_mappings = {
+    { ']g', 'workbench.action.editor.nextChange',     'Go to next git change' },
+    { '[g', 'workbench.action.editor.previousChange', 'Go to previous git change' },
+    { ']d', 'editor.action.marker.next',              'Go to next diagnostic' },
+    { '[d', 'editor.action.marker.prev',              'Go to previous diagnostic' },
+  }
 
-  -- Buffer and editor management
-  vim.keymap.set({ 'n', 'v' }, '<leader>,', function() vscode.action('workbench.action.showAllEditors') end,
-    { desc = 'Show all editors' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>bd', function() vscode.action('workbench.action.closeActiveEditor') end,
-    { desc = 'Close active editor' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>bo', function() vscode.action('workbench.action.closeOtherEditors') end,
-    { desc = 'Close other editors' })
+  local buffer_mappings = {
+    { '<leader>,',  'workbench.action.showAllEditors',    'Show all editors' },
+    { '<leader>bd', 'workbench.action.closeActiveEditor', 'Close active editor' },
+    { '<leader>bo', 'workbench.action.closeOtherEditors', 'Close other editors' },
+  }
 
-  -- Code actions and refactoring
-  vim.keymap.set({ 'n', 'v' }, '<leader>ca', function() vscode.action('editor.action.codeAction') end,
-    { desc = 'Code action' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>cr', function() vscode.action('editor.action.rename') end,
-    { desc = 'Rename symbol' })
+  local code_mappings = {
+    { '<leader>ca', 'editor.action.codeAction',         'Code action' },
+    { '<leader>cr', 'editor.action.rename',             'Rename symbol' },
+    { '<leader>gd', 'editor.action.revealDefinition',   'Go to definition' },
+    { '<leader>gs', 'workbench.action.gotoSymbol',      'Go to symbol' },
+    { '<leader>gr', 'editor.action.goToReferences',     'Go to references' },
+    { '<leader>gi', 'editor.action.goToImplementation', 'Go to implementation' },
+  }
 
-  -- Navigation to code symbols and definitions
-  vim.keymap.set({ 'n', 'v' }, '<leader>gd', function() vscode.action('editor.action.revealDefinition') end,
-    { desc = 'Go to definition' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>gs', function() vscode.action('workbench.action.gotoSymbol') end,
-    { desc = 'Go to symbol' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>gr', function() vscode.action('editor.action.goToReferences') end,
-    { desc = 'Go to references' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>gi', function() vscode.action('editor.action.goToImplementation') end,
-    { desc = 'Go to implementation' })
+  local search_mappings = {
+    { '<leader><leader>', 'workbench.action.quickOpen',       'Quick open' },
+    { '<leader>sg',       'find-it-faster.findWithinFiles',   'Find in files' },
+    { '<leader>sf',       'find-it-faster.findFiles',         'Find files' },
+    { '<leader>st',       'find-it-faster.findFilesWithType', 'Find files by type' },
+    { '<leader>ss',       'workbench.action.showAllSymbols',  'Show all symbols' },
+  }
 
-  -- Search functionality
-  vim.keymap.set({ 'n', 'v' }, '<leader><leader>', function() vscode.action('workbench.action.quickOpen') end,
-    { desc = 'Quick open' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>sg', function() vscode.action('find-it-faster.findWithinFiles') end,
-    { desc = 'Find in files' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>sf', function() vscode.action('find-it-faster.findFiles') end,
-    { desc = 'Find files' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>st', function() vscode.action('find-it-faster.findFilesWithType') end,
-    { desc = 'Find files by type' })
-  vim.keymap.set({ 'n', 'v' }, '<leader>ss', function() vscode.action('workbench.action.showAllSymbols') end,
-    { desc = 'Show all symbols' })
+  local all_mappings = {
+    navigation_mappings,
+    buffer_mappings,
+    code_mappings,
+    search_mappings,
+  }
+
+  for _, group in ipairs(all_mappings) do
+    for _, mapping in ipairs(group) do
+      local keys, action, desc = mapping[1], mapping[2], mapping[3]
+      vim.keymap.set({ 'n', 'v' }, keys, function() vscode.action(action) end, { desc = desc })
+    end
+  end
 end
 
 -- Setup lazy.nvim
