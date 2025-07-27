@@ -1,5 +1,5 @@
 {
-  "title": "o-launcher v1.8.3",
+  "title": "o-launcher v1.12.0",
   "maintainers": [
     "raeperd"
   ],
@@ -8,8 +8,81 @@
   ],
   "rules": [
     {
-      "description": "o-launcher v1.8.3",
+      "description": "o-launcher v1.12.0",
       "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "a",
+            "modifiers": {
+              "mandatory": [
+
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a TablePlus.app"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "launcher_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "o"
+              },
+              {
+                "key_code": "a"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_order": "strict_inverse",
+              "to_after_key_up": [
+                {
+                  "set_variable": {
+                    "name": "launcher_mode",
+                    "value": 0
+                  }
+                }
+              ]
+            },
+            "modifiers": {
+              "mandatory": [
+
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "launcher_mode",
+                "value": 1
+              }
+            },
+            {
+              "shell_command": "open -a TablePlus.app"
+            }
+          ],
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          }
+        },
         {
           "type": "basic",
           "from": {
@@ -317,7 +390,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a Ghostty.app"
+              "shell_command": "open -a Alacritty.app"
             }
           ],
           "conditions": [
@@ -368,7 +441,7 @@
               }
             },
             {
-              "shell_command": "open -a Ghostty.app"
+              "shell_command": "open -a Alacritty.app"
             }
           ],
           "parameters": {
@@ -536,7 +609,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a KakaoTalk.app"
+              "shell_command": "open -a Slack.app"
             }
           ],
           "conditions": [
@@ -587,7 +660,7 @@
               }
             },
             {
-              "shell_command": "open -a KakaoTalk.app"
+              "shell_command": "open -a Slack.app"
             }
           ],
           "parameters": {
@@ -609,7 +682,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a Postman.app"
+              "shell_command": "open -a Spotify.app"
             }
           ],
           "conditions": [
@@ -660,7 +733,7 @@
               }
             },
             {
-              "shell_command": "open -a Postman.app"
+              "shell_command": "open -a Spotify.app"
             }
           ],
           "parameters": {
@@ -682,7 +755,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a Spotify.app"
+              "shell_command": "open -a Slack.app"
             }
           ],
           "conditions": [
@@ -733,7 +806,80 @@
               }
             },
             {
-              "shell_command": "open -a Spotify.app"
+              "shell_command": "open -a Slack.app"
+            }
+          ],
+          "parameters": {
+            "basic.simultaneous_threshold_milliseconds": 500
+          }
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "q",
+            "modifiers": {
+              "mandatory": [
+
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "shell_command": "open -a TablePlus.app"
+            }
+          ],
+          "conditions": [
+            {
+              "type": "variable_if",
+              "name": "launcher_mode",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "simultaneous": [
+              {
+                "key_code": "o"
+              },
+              {
+                "key_code": "q"
+              }
+            ],
+            "simultaneous_options": {
+              "key_down_order": "strict",
+              "key_up_order": "strict_inverse",
+              "to_after_key_up": [
+                {
+                  "set_variable": {
+                    "name": "launcher_mode",
+                    "value": 0
+                  }
+                }
+              ]
+            },
+            "modifiers": {
+              "mandatory": [
+
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "set_variable": {
+                "name": "launcher_mode",
+                "value": 1
+              }
+            },
+            {
+              "shell_command": "open -a TablePlus.app"
             }
           ],
           "parameters": {
@@ -901,7 +1047,7 @@
           },
           "to": [
             {
-              "shell_command": "open -a 'Vivaldi.app'"
+              "shell_command": "open -a Zoom.us"
             }
           ],
           "conditions": [
@@ -952,7 +1098,7 @@
               }
             },
             {
-              "shell_command": "open -a 'Vivaldi.app'"
+              "shell_command": "open -a Zoom.us"
             }
           ],
           "parameters": {
