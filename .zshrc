@@ -1,6 +1,9 @@
 # If you come from bash you might have to change your $PATH.
 export PATH=/opt/homebrew/bin:~/go/bin:$PATH
 
+# Source sensitive environment variables (git-ignored)
+[ -f ~/.env.sh ] && source ~/.env.sh
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -153,10 +156,6 @@ alias v="nvim"
 
 alias lg="lazygit"
 
-alias python="/opt/homebrew/bin/python3"
-
-source ~/.env.sh 
-
 fn() {
   local search_dir="${1:-.}"  # Use first argument if provided, otherwise use current dir (.)
   
@@ -173,6 +172,73 @@ fn() {
   cd - > /dev/null  # Return to original directory silently
 }
 
+# Function to search file names and open with Cursor
+ffc() {
+    local dir="${1:-.}"
+    cd "$dir" && \
+    find . -type f | \
+    fzf --preview 'bat --color=always --style=numbers {}' \
+        --preview-window 'right:50%' \
+        --header 'Search file names (Cursor)' | \
+    xargs -r cursor && \
+    cd - > /dev/null
+}
+
+# Function to search file names and open with Neovim
+ff() {
+    local dir="${1:-.}"
+    cd "$dir" && \
+    find . -type f | \
+    fzf --preview 'bat --color=always --style=numbers {}' \
+        --preview-window 'right:50%' \
+        --header 'Search file names (Neovim)' | \
+    xargs -r nvim && \
+    cd - > /dev/null
+}
+
+# Function to search and open with Cursor (hidden files, exclude .git)
+fgc() {
+    local dir="${1:-.}"
+    cd "$dir" && \
+    fzf --ansi \
+        --bind 'change:reload:rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case {q} . || true' \
+        --delimiter : \
+        --preview 'bat --color=always --highlight-line {2} --style=numbers {1}' \
+        --preview-window 'right:50%:+{2}+3/3:~3' \
+        --phony \
+        --header 'Search text in files (Cursor)' | \
+    awk -F: '{print $1":"$2":"$3}' | xargs -r -I {} cursor --goto {} && \
+    cd - > /dev/null
+}
+
+# Function to search and open with Neovim (hidden files and dirs, exclude .git)
+fg() {
+    local dir="${1:-.}"
+    cd "$dir" && \
+    fzf --ansi \
+        --bind 'change:reload:rg --hidden --glob "!.git/*" --column --line-number --no-heading --color=always --smart-case {q} . || true' \
+        --delimiter : \
+        --preview 'bat --color=always --highlight-line {2} --style=numbers {1}' \
+        --preview-window 'right:50%:+{2}+3/3:~3' \
+        --phony \
+        --header 'Search text in files (Neovim)' | \
+    while IFS=: read -r file line col rest; do
+        [[ -n "$file" ]] && nvim "+$line" "$file"
+    done && \
+    cd - > /dev/null
+}
+
+alias alpha='aws-vault exec daangn/alpha --'
+eval "$(direnv hook zsh)"
+
+# asdf 
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
 # pnpm
 export PNPM_HOME="/Users/raeperd.117/Library/pnpm"
 case ":$PATH:" in
@@ -180,3 +246,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+
+. "$HOME/.local/bin/env"
+
+# bun completions
+[ -s "/Users/raeperd.park/.bun/_bun" ] && source "/Users/raeperd.park/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+alias claude="/Users/raeperd.park/.claude/local/claude --dangerously-skip-permissions"
+alias cl='claude' 
