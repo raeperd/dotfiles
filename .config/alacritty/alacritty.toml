@@ -1,12 +1,4 @@
-import = [
-  # uncomment the flavour you want below:
-  # "~/.config/alacritty/catppuccin-latte.toml"
-  # "~/.config/alacritty/catppuccin-frappe.toml"
-  # "~/.config/alacritty/catppuccin-macchiato.toml"
-  "~/.config/alacritty/catppuccin-mocha.toml"
-]
-
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["-l", "-c", "source ~/.zshrc; tmux attach || tmux"]
 
@@ -14,8 +6,8 @@ args = ["-l", "-c", "source ~/.zshrc; tmux attach || tmux"]
 TERM = "xterm-256color"
 
 [window]
-padding.x = 20
-padding.y = 30
+padding.x = 10
+padding.y = 15
 
 decorations = "Buttonless"
 
@@ -25,6 +17,16 @@ blur = true
 option_as_alt = "Both"
 
 [font]
-normal.family = "MesloLGS Nerd Font Mono"
-
+normal.family = "FiraMono Nerd Font"
 size = 18
+
+[general]
+import = [
+    # uncomment the flavour you want below:
+    # "~/.config/alacritty/catppuccin-latte.toml"
+    # "~/.config/alacritty/catppuccin-frappe.toml"
+    # "~/.config/alacritty/catppuccin-macchiato.toml"
+    "~/.config/alacritty/catppuccin-mocha.toml",
+]
+
+[terminal]
