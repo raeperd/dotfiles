@@ -5,5 +5,5 @@
 .config/linearmouse
 .env.sh
 .config/op
-.claude/settings.local.json
+.claude/
 .config/nvim/lua/.DS_Store
