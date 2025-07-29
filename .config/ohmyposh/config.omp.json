@@ -28,15 +28,6 @@
         },
         {
           "properties": {
-            "cache_duration": "none"
-          },
-          "template": "{{ .UserName }}@{{ .HostName }} ",
-          "foreground": "p:blue",
-          "type": "session",
-          "style": "plain"
-        },
-        {
-          "properties": {
             "cache_duration": "none",
             "folder_icon": "..\ue5fe..",
             "home_icon": "~",
@@ -67,21 +58,21 @@
           "style": "plain"
         },
         {
-          "properties": {
-            "cache_duration": "none"
-          },
-          "template": "\uf105",
-          "foreground": "p:closer",
-          "type": "text",
-          "style": "plain"
-        },
-        {
           "type": "python",
           "style": "powerline",
           "powerline_symbol": "",
           "foreground": "#100e23",
           "background": "#906cff",
           "template": "  {{ .Full }} "
+        },
+        {
+          "properties": {
+            "cache_duration": "none"
+          },
+          "template": "❯ ",
+          "foreground": "p:closer",
+          "type": "text",
+          "style": "plain"
         }
       ]
     }
