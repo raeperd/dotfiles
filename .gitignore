@@ -6,4 +6,5 @@
 .env.sh
 .config/op
 .claude/
+!.claude/CLAUDE.md
 .config/nvim/lua/.DS_Store
