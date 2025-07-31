@@ -145,14 +145,11 @@ bindkey '^[[B' history-search-forward
 # ---- Eza (better ls) -----
 alias ls="eza --icons=always"
 
-# ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
-
 alias k="kubectl"
 
 alias n="nvim"
 alias v="nvim"
+alias kn="NVIM_APPNAME=kickstart nvim"
 
 alias lg="lazygit"
 
@@ -259,3 +256,7 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 alias claude="/Users/raeperd.park/.claude/local/claude --dangerously-skip-permissions"
 alias cl='claude' 
+
+# ---- Zoxide (better cd) ----
+eval "$(zoxide init zsh)"
+alias cd="z"
