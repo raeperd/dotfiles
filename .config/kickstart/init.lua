@@ -91,12 +91,12 @@ require('lazy').setup {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local fzf = require 'fzf-lua'
-      
+
       fzf.setup {
         winopts = {
           height = 0.85,
           width = 0.80,
-          row = 0.35,
+          row = 0.50,
           col = 0.50,
           preview = {
             default = 'builtin',
@@ -416,6 +416,53 @@ require('lazy').setup {
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
+  },
+  {
+    'chrishrb/gx.nvim',
+    keys = { { 'gx', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
+    cmd = { 'Browse' },
+    init = function()
+      vim.g.netrw_nogx = 1 -- disable netrw gx
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('gx').setup {
+        open_browser_app = 'open',
+        open_browser_args = { '--background' },
+        open_callback = false,
+        select_prompt = true,
+        handlers = {
+          plugin = true,
+          github = true,
+          brewfile = true,
+          package_json = true,
+          go = true,
+          search = true,
+        },
+        handler_options = {
+          search_engine = 'google',
+          select_for_search = false,
+          git_remotes = { 'upstream', 'origin' },
+          git_remote_push = true,
+        },
+      }
+    end,
+  },
+
+  {
+    'alexghergh/nvim-tmux-navigation',
+    config = function()
+      local nvim_tmux_nav = require 'nvim-tmux-navigation'
+      nvim_tmux_nav.setup {
+        disable_when_zoomed = true, -- defaults to false
+      }
+      vim.keymap.set('n', '<C-h>', nvim_tmux_nav.NvimTmuxNavigateLeft)
+      vim.keymap.set('n', '<C-j>', nvim_tmux_nav.NvimTmuxNavigateDown)
+      vim.keymap.set('n', '<C-k>', nvim_tmux_nav.NvimTmuxNavigateUp)
+      vim.keymap.set('n', '<C-l>', nvim_tmux_nav.NvimTmuxNavigateRight)
+      vim.keymap.set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
+      vim.keymap.set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
+    end,
   },
 }
 
