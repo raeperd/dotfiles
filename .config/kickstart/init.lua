@@ -32,6 +32,8 @@ vim.o.scrolloff = 10
 vim.o.confirm = true
 vim.opt.termguicolors = true
 
+vim.o.tabstop = 2
+
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y', { desc = 'Yank to clipboard' })
@@ -404,7 +406,7 @@ require('lazy').setup {
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'go' },
       auto_install = true,
       highlight = {
         enable = true,
