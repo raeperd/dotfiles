@@ -30,9 +30,12 @@ vim.o.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.o.scrolloff = 10
 vim.o.confirm = true
+vim.opt.termguicolors = true
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>y', '"+y', { desc = 'Yank to clipboard' })
+vim.keymap.set({ 'n', 'v', 'x' }, '<leader>d', '"+d', { desc = 'Delete to clipboard' })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -91,7 +94,6 @@ require('lazy').setup {
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       local fzf = require 'fzf-lua'
-
       fzf.setup {
         winopts = {
           height = 0.85,
@@ -111,10 +113,7 @@ require('lazy').setup {
           },
         },
       }
-
-      -- Register UI select
       fzf.register_ui_select()
-
       vim.keymap.set('n', '<leader>sh', fzf.helptags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', fzf.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', fzf.files, { desc = '[S]earch [F]iles' })
@@ -125,7 +124,6 @@ require('lazy').setup {
       vim.keymap.set('n', '<leader>sr', fzf.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', fzf.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', fzf.buffers, { desc = '[ ] Find existing buffers' })
-
       vim.keymap.set('n', '<leader>/', function()
         fzf.blines {
           winopts = {
@@ -135,7 +133,6 @@ require('lazy').setup {
           },
         }
       end, { desc = '[/] Fuzzily search in current buffer' })
-
       vim.keymap.set('n', '<leader>s/', function()
         fzf.live_grep {
           grep_opts = '--color=never --files-with-matches',
@@ -149,7 +146,6 @@ require('lazy').setup {
           },
         }
       end, { desc = '[S]earch [/] in Open Files' })
-
       vim.keymap.set('n', '<leader>sn', function()
         fzf.files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
@@ -159,11 +155,7 @@ require('lazy').setup {
   {
     'folke/lazydev.nvim',
     ft = 'lua',
-    opts = {
-      library = {
-        { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
-      },
-    },
+    opts = { library = { { path = '${3rd}/luv/library', words = { 'vim%.uv' } } } },
   },
 
   {
@@ -179,21 +171,15 @@ require('lazy').setup {
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('kickstart-lsp-attach', { clear = true }),
         callback = function(event)
-          local map = function(keys, func, desc, mode)
-            mode = mode or 'n'
-            vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
-          end
-
-          map('grn', vim.lsp.buf.rename, '[R]e[n]ame')
-          map('gra', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-          map('grr', require('fzf-lua').lsp_references, '[G]oto [R]eferences')
-          map('gri', require('fzf-lua').lsp_implementations, '[G]oto [I]mplementation')
-          map('grd', require('fzf-lua').lsp_definitions, '[G]oto [D]efinition')
-          map('grD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-          map('gO', require('fzf-lua').lsp_document_symbols, 'Open Document Symbols')
-          map('gW', require('fzf-lua').lsp_workspace_symbols, 'Open Workspace Symbols')
-          map('grt', require('fzf-lua').lsp_typedefs, '[G]oto [T]ype Definition')
-
+          vim.keymap.set('n', 'grn', vim.lsp.buf.rename, { buffer = event.buf, desc = 'LSP: [R]e[n]ame' })
+          vim.keymap.set({ 'n', 'x' }, 'gra', vim.lsp.buf.code_action, { buffer = event.buf, desc = 'LSP: [G]oto Code [A]ction' })
+          vim.keymap.set('n', 'grr', require('fzf-lua').lsp_references, { buffer = event.buf, desc = 'LSP: [G]oto [R]eferences' })
+          vim.keymap.set('n', 'gri', require('fzf-lua').lsp_implementations, { buffer = event.buf, desc = 'LSP: [G]oto [I]mplementation' })
+          vim.keymap.set('n', 'grd', require('fzf-lua').lsp_definitions, { buffer = event.buf, desc = 'LSP: [G]oto [D]efinition' })
+          vim.keymap.set('n', 'grD', vim.lsp.buf.declaration, { buffer = event.buf, desc = 'LSP: [G]oto [D]eclaration' })
+          vim.keymap.set('n', 'gO', require('fzf-lua').lsp_document_symbols, { buffer = event.buf, desc = 'LSP: Open Document Symbols' })
+          vim.keymap.set('n', 'gW', require('fzf-lua').lsp_workspace_symbols, { buffer = event.buf, desc = 'LSP: Open Workspace Symbols' })
+          vim.keymap.set('n', 'grt', require('fzf-lua').lsp_typedefs, { buffer = event.buf, desc = 'LSP: [G]oto [T]ype Definition' })
           local client = vim.lsp.get_client_by_id(event.data.client_id)
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
@@ -202,13 +188,11 @@ require('lazy').setup {
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
-
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
-
             vim.api.nvim_create_autocmd('LspDetach', {
               group = vim.api.nvim_create_augroup('kickstart-lsp-detach', { clear = true }),
               callback = function(event2)
@@ -217,15 +201,13 @@ require('lazy').setup {
               end,
             })
           end
-
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
-            map('<leader>th', function()
+            vim.keymap.set('n', '<leader>th', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
+            end, { buffer = event.buf, desc = 'LSP: [T]oggle Inlay [H]ints' })
           end
         end,
       })
-
       vim.diagnostic.config {
         severity_sort = true,
         float = { border = 'rounded', source = 'if_many' },
@@ -252,9 +234,7 @@ require('lazy').setup {
           end,
         },
       }
-
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-
       local servers = {
         lua_ls = {
           settings = {
@@ -266,13 +246,11 @@ require('lazy').setup {
           },
         },
       }
-
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
@@ -347,26 +325,20 @@ require('lazy').setup {
       keymap = {
         preset = 'default',
       },
-
       appearance = {
         nerd_font_variant = 'mono',
       },
-
       completion = {
         documentation = { auto_show = false, auto_show_delay_ms = 500 },
       },
-
       sources = {
         default = { 'lsp', 'path', 'snippets', 'lazydev' },
         providers = {
           lazydev = { module = 'lazydev.integrations.blink', score_offset = 100 },
         },
       },
-
       snippets = { preset = 'luasnip' },
-
       fuzzy = { implementation = 'lua' },
-
       signature = { enabled = true },
     },
   },
@@ -382,41 +354,12 @@ require('lazy').setup {
           light = 'latte',
           dark = 'mocha',
         },
-        transparent_background = false,
-        show_end_of_buffer = false,
-        term_colors = true,
-        dim_inactive = {
-          enabled = false,
-          shade = 'dark',
-          percentage = 0.15,
-        },
-        no_italic = false,
-        no_bold = false,
-        no_underline = false,
-        styles = {
-          comments = { 'italic' },
-          conditionals = {},
-          loops = {},
-          functions = {},
-          keywords = {},
-          strings = {},
-          variables = {},
-          numbers = {},
-          booleans = {},
-          properties = {},
-          types = {},
-          operators = {},
-        },
+        transparent_background = true,
         integrations = {
-          cmp = true,
+          blink_cmp = { style = 'bordered' },
           gitsigns = true,
-          nvimtree = false,
           treesitter = true,
-          notify = false,
-          mini = {
-            enabled = true,
-            indentscope_color = '',
-          },
+          mini = { enabled = true },
           native_lsp = {
             enabled = true,
             virtual_text = {
@@ -431,13 +374,10 @@ require('lazy').setup {
               warnings = { 'underline' },
               information = { 'underline' },
             },
-            inlay_hints = {
-              background = true,
-            },
+            inlay_hints = { background = true },
           },
         },
       }
-
       vim.cmd.colorscheme 'catppuccin'
     end,
   },
@@ -449,16 +389,16 @@ require('lazy').setup {
     config = function()
       require('mini.ai').setup { n_lines = 500 }
       require('mini.surround').setup()
-
+      --
       local statusline = require 'mini.statusline'
       statusline.setup { use_icons = true }
-
       ---@diagnostic disable-next-line: duplicate-set-field
       statusline.section_location = function()
         return '%2l:%-2v'
       end
     end,
   },
+
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -473,6 +413,7 @@ require('lazy').setup {
       indent = { enable = true, disable = { 'ruby' } },
     },
   },
+
   {
     'chrishrb/gx.nvim',
     keys = { { 'gx', '<cmd>Browse<cr>', mode = { 'n', 'x' } } },
@@ -519,6 +460,41 @@ require('lazy').setup {
       vim.keymap.set('n', '<C-\\>', nvim_tmux_nav.NvimTmuxNavigateLastActive)
       vim.keymap.set('n', '<C-Space>', nvim_tmux_nav.NvimTmuxNavigateNext)
     end,
+  },
+
+  {
+    'folke/noice.nvim',
+    event = 'VeryLazy',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'rcarriga/nvim-notify',
+    },
+    opts = {
+      lsp = {
+        override = {
+          ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+          ['vim.lsp.util.stylize_markdown'] = true,
+          ['cmp.entry.get_documentation'] = true,
+        },
+      },
+      routes = {
+        {
+          filter = {
+            event = 'msg_show',
+            any = {
+              { find = '%d+L, %d+B' },
+              { find = '; after #%d+' },
+              { find = '; before #%d+' },
+            },
+          },
+          view = 'mini',
+        },
+      },
+      presets = {
+        command_palette = true,
+        long_message_to_split = true,
+      },
+    },
   },
 }
 
