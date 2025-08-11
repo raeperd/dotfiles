@@ -258,5 +258,6 @@ alias claude="/Users/raeperd.park/.claude/local/claude --dangerously-skip-permis
 alias cl='claude' 
 
 # ---- Zoxide (better cd) ----
-eval "$(zoxide init zsh)"
-alias cd="z"
+if [[ "$CLAUDECODE" != "1" ]]; then
+    eval "$(zoxide init --cmd cd zsh)"
+fi
