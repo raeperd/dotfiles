@@ -30,3 +30,23 @@ import = [
 ]
 
 [terminal]
+
+[[keyboard.bindings]]
+key = "Left"
+mods = "Alt"
+chars = "\u001Bb"
+
+[[keyboard.bindings]]
+key = "Right"
+mods = "Alt"
+chars = "\u001Bf"
+
+[[keyboard.bindings]]
+key = "Left"
+mods = "Command"
+chars = "\u001BOH"
+
+[[keyboard.bindings]]
+key = "Right"
+mods = "Command"
+chars = "\u001BOF"
