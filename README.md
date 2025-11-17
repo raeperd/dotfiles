@@ -10,13 +10,13 @@
 ## Brew
 
 ```
-brew install ghostty stow tmux gh lazygit fzf fd neovim aerospace eza zoxide go node jq 1password-cli jandedobbeleer/oh-my-posh/oh-my-posh gh
+brew install ghostty stow tmux gh lazygit fzf fd neovim eza zoxide go node jq 1password-cli jandedobbeleer/oh-my-posh/oh-my-posh
 ```
 
 ### cask
 
 ```
-brew install --cask setapp raycast obsidian vivaldi ticktick setapp orbstack cursor intellij-idea karabiner-elements linearmouse 1password ente-auth slack nikitabobko/tap/aerospace spotify visual-studio-code yaak
+brew install --cask setapp raycast obsidian ticktick setapp orbstack cursor intellij-idea karabiner-elements linearmouse 1password ente-auth slack nikitabobko/tap/aerospace yaak
 ```
 
 karabiner needs password
@@ -57,7 +57,7 @@ go install github.com/josharian/impl@latest
 
 언어 및 지역 -> 영어 -> 재시작
 
-keyboard shortcuts -> spotlight disable  keyboard shortcuts -> input source
+keyboard shortcuts -> spotlight disable keyboard shortcuts -> input source
 
 control center > menubar
 
