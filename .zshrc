@@ -254,8 +254,7 @@ esac
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
-alias claude="/Users/raeperd.park/.claude/local/claude --dangerously-skip-permissions"
-alias cl='claude' 
+alias cl='claude --dangerously-skip-permissions' 
 
 # ---- Zoxide (better cd) ----
 if [[ "$CLAUDECODE" != "1" ]]; then
