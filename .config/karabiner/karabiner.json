@@ -6,7 +6,7 @@
                 "parameters": { "basic.simultaneous_threshold_milliseconds": 100 },
                 "rules": [
                     {
-                        "description": "o-launcher v1.12.0",
+                        "description": "o-launcher v1.13.0",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -176,13 +176,13 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "d",
+                                    "key_code": "h",
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a Vivaldi.app" }],
+                                "to": [{ "shell_command": "open -a Helium.app" }],
                                 "type": "basic"
                             },
                             {
@@ -193,7 +193,7 @@
                                     },
                                     "simultaneous": [
                                         { "key_code": "o" },
-                                        { "key_code": "d" }
+                                        { "key_code": "h" }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -216,60 +216,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a Vivaldi.app" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "launcher_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "g",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "open -a Ghostty.app" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    },
-                                    "simultaneous": [
-                                        { "key_code": "o" },
-                                        { "key_code": "g" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "launcher_mode",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a Ghostty.app" }
+                                    { "shell_command": "open -a Helium.app" }
                                 ],
                                 "type": "basic"
                             },
@@ -288,7 +235,7 @@
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a Alacritty.app" }],
+                                "to": [{ "shell_command": "open -a Ghostty.app" }],
                                 "type": "basic"
                             },
                             {
@@ -322,7 +269,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a Alacritty.app" }
+                                    { "shell_command": "open -a Ghostty.app" }
                                 ],
                                 "type": "basic"
                             },
@@ -388,59 +335,6 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "j",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "open -a 'Intellij IDEA Ultimate.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    },
-                                    "simultaneous": [
-                                        { "key_code": "o" },
-                                        { "key_code": "j" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "launcher_mode",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a 'Intellij IDEA Ultimate.app'" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "launcher_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
                                     "key_code": "k",
                                     "modifiers": {
                                         "mandatory": [],
@@ -494,13 +388,13 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "p",
+                                    "key_code": "j",
                                     "modifiers": {
                                         "mandatory": [],
                                         "optional": ["any"]
                                     }
                                 },
-                                "to": [{ "shell_command": "open -a Spotify.app" }],
+                                "to": [{ "shell_command": "open -a 'Intellij IDEA Ultimate.app'" }],
                                 "type": "basic"
                             },
                             {
@@ -511,7 +405,7 @@
                                     },
                                     "simultaneous": [
                                         { "key_code": "o" },
-                                        { "key_code": "p" }
+                                        { "key_code": "j" }
                                     ],
                                     "simultaneous_options": {
                                         "key_down_order": "strict",
@@ -534,7 +428,7 @@
                                             "value": 1
                                         }
                                     },
-                                    { "shell_command": "open -a Spotify.app" }
+                                    { "shell_command": "open -a 'Intellij IDEA Ultimate.app'" }
                                 ],
                                 "type": "basic"
                             },
@@ -600,59 +494,6 @@
                                     }
                                 ],
                                 "from": {
-                                    "key_code": "q",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "open -a TablePlus.app" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    },
-                                    "simultaneous": [
-                                        { "key_code": "o" },
-                                        { "key_code": "q" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "launcher_mode",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a TablePlus.app" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "launcher_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
                                     "key_code": "t",
                                     "modifiers": {
                                         "mandatory": [],
@@ -694,59 +535,6 @@
                                         }
                                     },
                                     { "shell_command": "open -a TickTick.app" }
-                                ],
-                                "type": "basic"
-                            },
-                            {
-                                "conditions": [
-                                    {
-                                        "name": "launcher_mode",
-                                        "type": "variable_if",
-                                        "value": 1
-                                    }
-                                ],
-                                "from": {
-                                    "key_code": "v",
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    }
-                                },
-                                "to": [{ "shell_command": "open -a 'Visual Studio Code.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "from": {
-                                    "modifiers": {
-                                        "mandatory": [],
-                                        "optional": ["any"]
-                                    },
-                                    "simultaneous": [
-                                        { "key_code": "o" },
-                                        { "key_code": "v" }
-                                    ],
-                                    "simultaneous_options": {
-                                        "key_down_order": "strict",
-                                        "key_up_order": "strict_inverse",
-                                        "to_after_key_up": [
-                                            {
-                                                "set_variable": {
-                                                    "name": "launcher_mode",
-                                                    "value": 0
-                                                }
-                                            }
-                                        ]
-                                    }
-                                },
-                                "parameters": { "basic.simultaneous_threshold_milliseconds": 500 },
-                                "to": [
-                                    {
-                                        "set_variable": {
-                                            "name": "launcher_mode",
-                                            "value": 1
-                                        }
-                                    },
-                                    { "shell_command": "open -a 'Visual Studio Code.app'" }
                                 ],
                                 "type": "basic"
                             },
