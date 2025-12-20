@@ -1,11 +1,11 @@
-# Dotfile
+# dotfiles
 
-# Bootup settings
+## Bootup settings
 
 - Need Apple ID login
 - Need touch id setting
 
-# App install
+## App install
 
 ## Brew
 
@@ -50,7 +50,7 @@ mas install 1538996043
 go install github.com/josharian/impl@latest
 ```
 
-# MacOS Settings
+## MacOS Settings
 
 시스템 설정 -> 키보드 -> 텍스트 입력 -> 수정
 맞춤법 자동수정
@@ -66,7 +66,7 @@ control center > menubar
 git clone --recurse-submodules https://github.com/raeperd/dotfiles.git
 ```
 
-# Application settings
+## Application settings
 
 ## ticktick
 
