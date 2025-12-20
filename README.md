@@ -3,6 +3,7 @@
 ```sh
 git clone --recurse-submodules https://github.com/raeperd/dotfiles.git
 ```
+- oh-my-zsh and tpm are included as submodule
 
 ## Brew
 
@@ -26,7 +27,6 @@ keyboard shortcuts -> spotlight disable keyboard shortcuts -> input source
 control center > menubar
 
 
-
 ## Application settings
 
 ## cursor
@@ -35,22 +35,6 @@ control center > menubar
 
 - cursor import has issue
 - FiraMono Nerd Font
-
-## ohmyzsh
-
-Oh My ZSH is included as a submodule (cloned with `--recurse-submodules`).
-
-- zsh-autosuggestions and zsh-syntax-highlighting installed via brew (in brew-install.sh)
-
-## tmux
-
-TPM is included as a submodule (cloned with `--recurse-submodules`).
-
-```sh
-# After stow, reload config and install plugins
-tmux source ~/.tmux.conf
-# prefix + I to install plugins
-```
 
 ## gh
 
