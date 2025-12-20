@@ -13,6 +13,8 @@ brew install pnpm
 brew install stow
 brew install tmux
 brew install zoxide
+brew install zsh-autosuggestions
+brew install zsh-syntax-highlighting
 
 # Casks (no sudo required)
 brew install --cask aerospace

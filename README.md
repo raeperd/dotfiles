@@ -18,7 +18,7 @@ Run the install scripts:
 
 ### Formulae (brew-install.sh)
 
-eza, fzf, gh, go, lazygit, neovim, node, oh-my-posh, pnpm, stow, tmux, zoxide
+eza, fzf, gh, go, lazygit, neovim, node, oh-my-posh, pnpm, stow, tmux, zoxide, zsh-autosuggestions, zsh-syntax-highlighting
 
 ### Casks (brew-install.sh)
 
@@ -82,11 +82,7 @@ git clone <https://github.com/raeperd/dotfiles.git>
 [ohmyzsh/tools/install.sh at master · ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/blob/master/tools/install.sh)
 
 - --keep-zshrc: sets KEEP_ZSHRC to 'yes'
-
-```sh
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-```
+- zsh-autosuggestions and zsh-syntax-highlighting installed via brew (in brew-install.sh)
 
 ## Zen browser
 

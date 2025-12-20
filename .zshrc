@@ -260,3 +260,6 @@ alias cl='claude --dangerously-skip-permissions'
 if [[ "$CLAUDECODE" != "1" ]]; then
     eval "$(zoxide init --cmd cd zsh)"
 fi
+
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

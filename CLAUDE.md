@@ -33,10 +33,6 @@ stow .
 ./brew-install.sh        # Non-interactive: formulae + casks
 ./brew-install-sudo.sh   # Requires sudo: 1password, karabiner-elements, orbstack, setapp
 
-# Oh My ZSH plugins (manual installation required)
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-
 # Tmux Plugin Manager setup
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 # Then: tmux source ~/.tmux.conf && prefix + I
