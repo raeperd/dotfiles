@@ -1,4 +1,5 @@
-.config/tmux/plugins
+.config/tmux/plugins/*
+!.config/tmux/plugins/tpm
 .config/karabiner/automatic_backups
 .config/raycast/*
 !.config/raycast/scripts
