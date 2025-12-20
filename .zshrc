@@ -224,7 +224,6 @@ fg() {
 }
 
 alias alpha='aws-vault exec daangn/alpha --'
-eval "$(direnv hook zsh)"
 
 # asdf 
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
@@ -241,9 +240,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-
-
-. "$HOME/.local/bin/env"
 
 # bun completions
 [ -s "/Users/raeperd.park/.bun/_bun" ] && source "/Users/raeperd.park/.bun/_bun"
