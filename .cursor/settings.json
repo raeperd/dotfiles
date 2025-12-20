@@ -1,0 +1,55 @@
+{
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.detectIndentation": false,
+        "editor.formatOnSave": true,
+        "editor.tabSize": 2
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.formatOnSave": true
+    },
+    "[proto]": {
+        "editor.formatOnSave": false
+    },
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "cursor.composer.textSizeScale": 1.15,
+    "cursorpyright.analysis.inlayHints.genericTypes": false,
+    "cursorpyright.analysis.typeCheckingMode": "strict",
+    "editor.accessibilitySupport": "off",
+    "editor.fontFamily": "FiraCode Nerd Font",
+    "editor.fontSize": 17,
+    "editor.formatOnSave": true,
+    "editor.lineNumbers": "relative",
+    "editor.unicodeHighlight.invisibleCharacters": false,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "go.alternateTools": {
+        "customFormatter": "/opt/homebrew/bin/golangci-lint"
+    },
+    "go.formatFlags": [
+        "fmt",
+        "--stdin"
+    ],
+    "go.formatTool": "custom",
+    "go.lintFlags": [
+        "--path-mode=abs",
+        "--fast-only"
+    ],
+    "go.lintTool": "golangci-lint-v2",
+    "go.testExplorer.packageDisplayMode": "nested",
+    "go.testExplorer.showDynamicSubtestsInEditor": true,
+    "go.toolsManagement.autoUpdate": true,
+    "notebook.lineNumbers": "on",
+    "projectManager.git.baseFolders": [
+        "/Users/raeperd/Codes"
+    ],
+    "redhat.telemetry.enabled": false,
+    "terminal.integrated.fontSize": 17,
+    "workbench.activityBar.orientation": "vertical",
+    "workbench.colorTheme": "Cursor Dark High Contrast",
+    "workbench.editor.enablePreview": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.sideBar.location": "right"
+}
