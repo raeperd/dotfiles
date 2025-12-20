@@ -62,7 +62,9 @@ keyboard shortcuts -> spotlight disable keyboard shortcuts -> input source
 
 control center > menubar
 
-git clone <https://github.com/raeperd/dotfiles.git>
+```sh
+git clone --recurse-submodules https://github.com/raeperd/dotfiles.git
+```
 
 # Application settings
 
@@ -79,9 +81,8 @@ git clone <https://github.com/raeperd/dotfiles.git>
 
 ## ohmyzsh
 
-[ohmyzsh/tools/install.sh at master · ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/blob/master/tools/install.sh)
+Oh My ZSH is included as a submodule (cloned with `--recurse-submodules`).
 
-- --keep-zshrc: sets KEEP_ZSHRC to 'yes'
 - zsh-autosuggestions and zsh-syntax-highlighting installed via brew (in brew-install.sh)
 
 ## Zen browser
@@ -94,11 +95,10 @@ git clone <https://github.com/raeperd/dotfiles.git>
 
 ## tmux
 
-### install tpm
+TPM is included as a submodule (cloned with `--recurse-submodules`).
 
 ```sh
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-# type this in terminal if tmux is already running
+# After stow, reload config and install plugins
 tmux source ~/.tmux.conf
 # prefix + I to install plugins
 ```
