@@ -10,11 +10,6 @@ git clone --recurse-submodules https://github.com/raeperd/dotfiles.git
 ```sh
 ./brew-install.sh        # Non-interactive packages
 ./brew-install-sudo.sh   # Packages requiring sudo/authentication
-```
-
-### mas install
-
-```sh
 ./brew-install-mas.sh  # kakaotalk, texty
 ```
 
