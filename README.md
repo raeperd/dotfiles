@@ -8,9 +8,10 @@ git clone --recurse-submodules https://github.com/raeperd/dotfiles.git
 ## Brew
 
 ```sh
-./brew-install.sh        # Non-interactive packages
-./brew-install-sudo.sh   # Packages requiring sudo/authentication
-./brew-install-mas.sh  # kakaotalk, texty
+./brew-install.sh        # Formulae
+./brew-install-cask.sh   # Casks (no sudo)
+./brew-install-sudo.sh   # Casks requiring sudo/authentication
+./brew-install-mas.sh    # Mac App Store apps
 ```
 
 ## MacOS Settings
