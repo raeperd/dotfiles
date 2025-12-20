@@ -9,23 +9,24 @@
 
 ## Brew
 
-```
-brew install ghostty stow tmux gh lazygit fzf fd neovim eza zoxide go node jq 1password-cli jandedobbeleer/oh-my-posh/oh-my-posh
+Run the install scripts:
+
+```sh
+./brew-install.sh        # Non-interactive packages
+./brew-install-sudo.sh   # Packages requiring sudo/authentication
 ```
 
-### cask
+### Formulae (brew-install.sh)
 
-```
-brew install --cask setapp raycast obsidian ticktick setapp orbstack cursor intellij-idea karabiner-elements linearmouse 1password ente-auth slack nikitabobko/tap/aerospace yaak
-```
+eza, fzf, gh, go, lazygit, neovim, node, oh-my-posh, pnpm, stow, tmux, zoxide
 
-karabiner needs password
+### Casks (brew-install.sh)
 
-### font
+aerospace, claude-code, cursor, ente-auth, font-fira-code-nerd-font, ghostty, helium-browser, linearmouse, obsidian, raycast, ticktick, yaak
 
-```
-brew tap homebrew/cask-fonts && brew install --cask font-fira-mono-nerd-font
-```
+### Casks requiring sudo (brew-install-sudo.sh)
+
+1password, karabiner-elements, orbstack, setapp
 
 ## mas install
 

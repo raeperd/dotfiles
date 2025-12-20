@@ -26,17 +26,12 @@ The configuration uses a **unified approach** where a single nvim config works f
 
 ```bash
 # GNU Stow setup (symlinks configurations to home directory)
-# Run from within the dotfiles repository (/Users/raeperd.park/dotfiles)
+# Run from within the dotfiles repository (/Users/raeperd/dotfiles)
 stow .
 
-# Initial environment setup (requires manual steps - see README.md)
-brew install ghostty stow tmux gh lazygit fzf fd neovim aerospace eza zoxide go node jq 1password-cli jandedobbeleer/oh-my-posh/oh-my-posh gh
-
-# Cask applications
-brew install --cask setapp raycast obsidian vivaldi ticktick setapp orbstack cursor intellij-idea karabiner-elements linearmouse 1password ente-auth slack nikitabobko/tap/aerospace spotify visual-studio-code yaak
-
-# Font installation
-brew tap homebrew/cask-fonts && brew install --cask font-fira-mono-nerd-font
+# Homebrew packages (run from dotfiles directory)
+./brew-install.sh        # Non-interactive: formulae + casks
+./brew-install-sudo.sh   # Requires sudo: 1password, karabiner-elements, orbstack, setapp
 
 # Oh My ZSH plugins (manual installation required)
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
