@@ -10,6 +10,7 @@ brew install lazygit
 brew install neovim
 brew install node
 brew install pnpm
+brew install sesh
 brew install stow
 brew install tmux
 brew install zoxide
