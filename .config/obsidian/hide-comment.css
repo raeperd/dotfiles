@@ -1,8 +1,0 @@
-.cm-active.HyperMD-header.HyperMD-header-1.cm-line ~ div .cm-comment,
-.HyperMD-codeblock ~ div .cm-comment {
-  display: inline !important;
-}
-
-.cm-comment {
-  display: none;
-}
