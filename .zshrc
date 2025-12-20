@@ -75,8 +75,6 @@ source ~/.config/zsh/themes/catppuccin_mocha-zsh-syntax-highlighting.zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	git
-	zsh-syntax-highlighting
-	zsh-autosuggestions
 	tmux
 )
 
