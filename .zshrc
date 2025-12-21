@@ -233,14 +233,6 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-# pnpm
-export PNPM_HOME="/Users/raeperd.117/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 # bun completions
 [ -s "/Users/raeperd.park/.bun/_bun" ] && source "/Users/raeperd.park/.bun/_bun"
 
