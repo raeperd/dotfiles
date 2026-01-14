@@ -149,6 +149,9 @@ alias n="nvim"
 alias v="nvim"
 alias kn="NVIM_APPNAME=kickstart nvim"
 
+alias opencode="EDITOR=zed opencode"
+alias oc="opencode"
+
 alias lg="lazygit"
 
 fn() {
